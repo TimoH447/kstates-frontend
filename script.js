@@ -8,6 +8,21 @@ function submitData() {
   window.location.href = "results.html";
 }
 
+function parsePDNotation(pd_notation) {
+  var parsed_pd_notation = [];
+  var crossings = pd_notation.split(";");
+  for (var i = 0; i < crossings.length; i++) {
+    var parsed_crossing = crossings[i].trim().split(",");
+    if (parsed_crossing.length != 4) {
+      throw new Error("Invalid PD notation format. Each crossing must have exactly four integers.");
+    }
+    for (var j = 0; j < parsed_crossing.length; j++) {
+      parsed_crossing[j] = parseInt(parsed_crossing[j].trim());
+    }
+    parsed_pd_notation.push(parsed_crossing);
+  }
+  return parsed_pd_notation;}
+
 async function loadResults() {
   const pd = localStorage.getItem("pd_notation");
   const seg = localStorage.getItem("fixed_segment");
@@ -18,11 +33,21 @@ async function loadResults() {
   }
 
   try {
+    var parsed_pd = parsePDNotation(pd);
+  }
+  catch (err) {
+    document.getElementById("metadata").innerText = "Invalid PD notation format. Please check your input.";
+    console.error(err);
+    return;
+  }
+
+
+  try {
   const response = await fetch("https://9fp1ejw64i.execute-api.eu-central-1.amazonaws.com", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ 
-      pd_notation: pd,           // The string from user input
+      pd_notation: parsed_pd,           // parsed pd notation as a list of lists
       fixed_segment: parseInt(seg)  // The number from user input
     })
   });
