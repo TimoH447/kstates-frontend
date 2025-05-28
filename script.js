@@ -18,27 +18,31 @@ async function loadResults() {
   }
 
   try {
-    const response = await fetch("https://your-api-url.com/generate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ pd_notation: pd, fixed_segment: parseInt(seg) })
-    });
+  const response = await fetch("https://9fp1ejw64i.execute-api.eu-central-1.amazonaws.com", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ 
+      pd_notation: pd,           // The string from user input
+      fixed_segment: parseInt(seg)  // The number from user input
+    })
+  });
 
-    const data = await response.json();
+  const data = await response.json();
+  
+  // Display the lattice image
+  document.getElementById("lattice-img").src = data.image_url;
 
-    document.getElementById("lattice-img").src = data.image_url;
+  // Display metadata
+  document.getElementById("metadata").innerHTML = `
+    <p><strong>Number of States:</strong> ${data.number_of_states}</p>
+  `;
 
-    document.getElementById("metadata").innerHTML = `
-      <p><strong>Number of States:</strong> ${data.number_of_states}</p>
-      <p><strong>Number of Layers:</strong> ${data.number_of_layers}</p>
-      <p><strong>Min Marker Position:</strong> ${JSON.stringify(data.min_marker_position)}</p>
-      <p><strong>Max Marker Position:</strong> ${JSON.stringify(data.max_marker_position)}</p>
-      <p><strong>Transpositions:</strong> ${data.transposition_sequence.join(" → ")}</p>
-    `;
-  } catch (err) {
-    document.getElementById("metadata").innerText = "An error occurred while fetching data.";
-    console.error(err);
-  }
+
+  
+} catch (err) {
+  document.getElementById("metadata").innerText = "An error occurred while fetching data.";
+  console.error(err);
+}
 }
 
 function goBack() {
