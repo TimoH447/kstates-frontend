@@ -26,6 +26,8 @@ function parsePDNotation(pd_notation) {
 async function loadResults() {
   const pd = localStorage.getItem("pd_notation");
   const seg = localStorage.getItem("fixed_segment");
+  document.getElementById("pd-input").value = pd || "";
+  document.getElementById("fixed-segment").value = seg || "";
 
   if (!pd || !seg) {
     document.getElementById("metadata").innerText = "Missing input. Please go back and try again.";

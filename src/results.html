@@ -8,13 +8,17 @@
 <body>
   <a href="about.html" style="position: absolute; top: 1rem; right: 1rem; text-decoration: none; font-size: 1.2rem;">
   ℹ️
-    </a>
+  </a>
+  <h1 style="padding-left: 1rem;">K.States</h1>
 
   <main class="centered">
-    <h1>Knot State Lattice</h1>
+    <textarea id="pd-input" placeholder="Enter PD notation here..."></textarea>
+    <div style="display: flex; gap: 1rem">
+      <input id="fixed-segment" type="number" placeholder="Enter segment" />
+      <button onclick="submitData()">Update</button>
+    </div>
     <img id="lattice-img" src="" alt="Lattice diagram will appear here" />
     <div id="metadata"></div>
-    <button onclick="goBack()">Try another input</button>
   </main>
 
 
