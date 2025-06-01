@@ -45,16 +45,19 @@ async function loadResults() {
 
 
   try {
-  const response = await fetch("https://9fp1ejw64i.execute-api.eu-central-1.amazonaws.com", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ 
-      pd_notation: parsed_pd,           // parsed pd notation as a list of lists
-      fixed_segment: parseInt(seg)  // The number from user input
-    })
-  });
+  //const response = await fetch("https://9fp1ejw64i.execute-api.eu-central-1.amazonaws.com", {
+    //method: "POST",
+    //headers: { "Content-Type": "application/json" },
+    //body: JSON.stringify({ 
+      //pd_notation: parsed_pd,           // parsed pd notation as a list of lists
+      //fixed_segment: parseInt(seg)  // The number from user input
+    //})
+  //});
 
-  const data = await response.json();
+
+  //const data = await response.json();
+  const data = returnTestApiResponse(); // For testing purposes, replace with actual API call
+
   
   // Display the lattice image
   document.getElementById("lattice-img").src = data.image_url;
@@ -62,6 +65,11 @@ async function loadResults() {
   // Display metadata
   document.getElementById("metadata").innerHTML = `
     <p><strong>Number of States:</strong> ${data.number_of_states}</p>
+    <p><strong>F-Polynomial:</strong> ${data.f_polynomial}</p>
+    <p><strong>Alexander Polynomial:</strong> ${data.alexander_polynomial}</p>
+    <p><strong>Minimal State:</strong> ${data.minimal_state}</p>
+    <p><strong>Maximal State:</strong> ${data.maximal_state}</p>
+    <p><strong>Sequence from Minimal to Maximal State:</strong> ${data.sequence_min_to_max}</p>
   `;
 
 
@@ -83,4 +91,14 @@ if (window.location.pathname.includes("results.html")) {
 
 function goHome() {
   window.location.href = "index.html";
+}
+
+function returnTestApiResponse() {
+  return {"number_of_states": 25,
+    "f_polynomial": "1 + y_{1} + y_{4} + y_{9} + y_{1}y_{4} + y_{1}y_{9} + y_{4}y_{9} + y_{9}y_{13} + y_{1}y_{4}y_{9} + y_{1}y_{9}y_{13} + y_{4}y_{9}y_{13} + y_{1}y_{4}y_{9}y_{13} + y_{1}y_{8}y_{9}y_{13} + y_{1}y_{4}y_{8}y_{9}y_{13} + y_{1}y_{8}y_{9}y_{13}y_{14} + y_{1}y_{4}y_{8}y_{9}y_{13}y_{14} + y_{1}y_{4}y_{8}y_{9}y_{10}y_{13}y_{14} + y_{1}y_{3}y_{4}y_{8}y_{9}y_{10}y_{13}y_{14} + y_{1}y_{4}y_{8}y_{9}y_{10}y_{13}y_{14}y_{15} + y_{1}y_{3}y_{4}y_{8}y_{9}y_{10}y_{11}y_{13}y_{14} + y_{1}y_{3}y_{4}y_{8}y_{9}y_{10}y_{13}y_{14}y_{15} + y_{1}y_{4}y_{8}y_{9}^2y_{10}y_{13}y_{14}y_{15} + y_{1}y_{3}y_{4}y_{8}y_{9}y_{10}y_{11}y_{13}y_{14}y_{15} + y_{1}y_{3}y_{4}y_{8}y_{9}^2y_{10}y_{13}y_{14}y_{15} + y_{1}y_{3}y_{4}y_{8}y_{9}^2y_{10}y_{11}y_{13}y_{14}y_{15}",
+    "alexander_polynomial": "- t^{-1}",
+    "minimal_state": "Crossing (1, 7, 2, 6): (6, 1), Crossing (2, 5, 3, 6): (5, 3), Crossing (5, 12, 4, 11): (12, 4), Crossing (4, 10, 3, 11): (11, 4), Crossing (1, 8, 16, 7): (7, 1), Crossing (16, 13, 15, 12): (16, 13), Crossing (13, 8, 14, 9): (14, 9), Crossing (14, 10, 15, 9): (15, 9)",
+    "maximal_state": "Crossing (1, 7, 2, 6): (1, 7), Crossing (2, 5, 3, 6): (3, 6), Crossing (5, 12, 4, 11): (11, 5), Crossing (4, 10, 3, 11): (11, 4), Crossing (1, 8, 16, 7): (8, 16), Crossing (16, 13, 15, 12): (15, 12), Crossing (13, 8, 14, 9): (9, 13), Crossing (14, 10, 15, 9): (9, 14)",
+    "sequence_min_to_max": "[1, 4, 9, 13, 8, 14, 10, 15, 3, 9, 11]", 
+    "image_url": "https://lambdaimage-testbucket.s3.amazonaws.com/lattice.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAVSFYGCBVYTDNBMBJ%2F20250601%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20250601T162753Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBAaDGV1LWNlbnRyYWwtMSJHMEUCIQDPqYl3%2BJZI0Kv3CFgVWjal7PhDFUeB17rjWlSsWxao9AIgPNv7VlEHOQCss4lp9jlL283qKaMUe3UH5uRbWN2%2FIaoq%2FgII2v%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARADGgwzODI2MzgzNjI3MzEiDC9buBCWW0yE%2FUhTRyrSAqnbG0mpwNZUfFHxxY%2FTMJfF3z4oOoe9pnqzkgQv5pIpZW%2FwGxA23CcjKJ0CcZwsemi5Dj7fPM6Mfg%2FTPV2izZWHPKQCJGvzguF7JDeMU9PBgf3xFGErtMG88nWSDUf2NUY7Z9muPVX9ycYXFwEXBz%2FuIElf1%2FX%2BEYqh3uZG%2Ban4Au6vg%2F0l06iZZwSzhlFuA9m9pOsKooSnzGKWtrxJgJkhM9zHQmf5Gj2LJJO2BbCikH6sIunrdG0riKc4arCWSGeCIV6ZxvFpQk5YtyIzfOS6Rbvg9U5gUIlVXnZ6uyTfJG3X5Nf4FCzbwElo%2FGqKsmhyz8FsfCPr8T49nqvmHekkwtk0HhExEFnTpUedfCXTIAVBfkxDi4%2FVnbS0AyCqfJjPJN8qbjbxn1iKTsSpU6SkUwxH%2F8luMIOZzwzp%2B7rDumr%2Bnp9AEqt0sYxiynu7tXL8MIL98cEGOp4B3SkJx7EyK%2BSeVPro9R4lHILzQcf5%2BA2wwU3CkuiRwCRdCpbRNDGUg7qbopz7p%2FszGWwjcoRcEuZ2iVrz0LRTJ5eGSHJYkj1K4xVLapCTQZOKDJ%2Blw7Da7WAQNARWztTRKEIfCGt9Q5pNbm463pmb4IzO879wbLK%2BeJcUB923L36i6FWWPiVpuDO%2B2LuItDSQeKydbnYyejC2aW0QtFg%3D&X-Amz-Signature=c856233be70572225a059fa5474446fb3e0a1d3adcdcd4db668d55e21295c549"}
 }
