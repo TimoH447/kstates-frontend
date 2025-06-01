@@ -45,18 +45,18 @@ async function loadResults() {
 
 
   try {
-  //const response = await fetch("https://9fp1ejw64i.execute-api.eu-central-1.amazonaws.com", {
-    //method: "POST",
-    //headers: { "Content-Type": "application/json" },
-    //body: JSON.stringify({ 
-      //pd_notation: parsed_pd,           // parsed pd notation as a list of lists
-      //fixed_segment: parseInt(seg)  // The number from user input
-    //})
-  //});
+  const response = await fetch("https://9fp1ejw64i.execute-api.eu-central-1.amazonaws.com", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ 
+      pd_notation: parsed_pd,           // parsed pd notation as a list of lists
+      fixed_segment: parseInt(seg)  // The number from user input
+    })
+  });
 
 
-  //const data = await response.json();
-  const data = returnTestApiResponse(); // For testing purposes, replace with actual API call
+  const data = await response.json();
+  //const data = returnTestApiResponse(); // For testing purposes, replace with actual API call
 
   
   // Display the lattice image
