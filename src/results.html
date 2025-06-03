@@ -3,25 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <title>K.States – Results</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <a href="about.html" style="position: absolute; top: 1rem; right: 1rem; text-decoration: none; font-size: 1.2rem;">
-  ℹ️
-  </a>
-  <h1 style="padding-left: 1rem;">K.States</h1>
+<body class="text-white d-flex justify-content-center align-items-center">
 
-  <main class="centered">
-    <textarea id="pd-input" placeholder="Enter PD notation here..."></textarea>
-    <div style="display: flex; gap: 1rem">
-      <input id="fixed-segment" type="number" placeholder="Enter segment" />
-      <button onclick="submitData()">Update</button>
+  <div class="container row justify-content-center align-items-center  m-3 rounded-4 shadow-sm bg-glass">
+  <div class="row">
+     <div class="col-11 mt-3">
+      <h1 class="display-1 fw-bold">K.States</h1>
     </div>
-    <img id="lattice-img" src="" alt="Lattice diagram will appear here" />
-    <div id="metadata"></div>
-  </main>
+    <div class="col-1 mt-2 d-flex justify-content-center align-items-center">
+      <a href="about.html" style="text-decoration: none; font-size: 2rem; color: rgb(167, 186, 215);">
+        <i class="bi bi-info-circle-fill"></i>
+      </a>
+    </div>
+  </div>
+      <form class="mb-3">
+      <div class="row g-2">
+        <!-- Textarea: Full width on small screens, inline on medium+ -->
+        <div class="col-12 col-md-10">
+          <textarea id="pd-input" class="form-control" rows="1" placeholder="Enter PD notation here...">1,7,2,6;2,5,3,6;5,12,4,11;4,10,3,11;1,8,16,7;16,13,15,12;13,8,14,9;14,10,15,9</textarea>
+        </div>
+
+        <!-- Segment input and button in same row -->
+        <div class="col-12 col-md-2">
+          <div class="row g-2">
+            <div class="col">
+              <input id="fixed-segment" type="number" class="form-control" placeholder="Segment" />
+            </div>
+            <div class="col-auto">
+              <button type="button" style="background-color: rgb(167, 186, 215); border-color: rgb(167, 186, 215); color: black;" class="btn btn-primary" onclick="submitData()" title="Submit">
+                <i class="bi bi-arrow-right-circle"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
 
 
+
+    <div class="container">
+      <img id="lattice-img" src="" class="img-fluid" alt="Lattice diagram will appear here" />
+      <div id="metadata"></div>
+    </div>
+
+
+  </div>
+
+   
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js" integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous"></script>
   <script src="script.js"></script>
 </body>
 </html>

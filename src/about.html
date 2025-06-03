@@ -3,84 +3,88 @@
 <head>
   <meta charset="UTF-8" />
   <title>About – K.States</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <a href="index.html" style="text-decoration: none; color:black">
-  <h1 style="padding-left: 1rem;">K.States</h1>
-  </a>
-  <main class="centered">
-    <h1>About K.States</h1>
-    <p>
-      <strong>K.States</strong> is a web application for visualizing state lattices of knots.
-      You can input a knot diagram in <em>PD notation</em> and select a fixed segment to generate the
-      associated Kauffman state lattice.
-    </p>
-    <p>
-      For the explanation of the PD notation, please refer to 
-      <a href="https://knotinfo.math.indiana.edu/descriptions/pd_notation.html" target="_blank">
-      KnotInfo's PD notation description</a>. 
-      We slightly change the syntax instead of brackets or letters between crossings, 
-      we seperate the segments of a crossing with a comma and the crossings with a 
-      semicolon.
-      <br/>
-      For example the PD notation for the knot 8_8 from the Rolfsen table is:
-      <code class="centered">
-        1,7,2,6;2,5,3,6;5,12,4,11;4,10,3,11;1,8,16,7;16,13,15,12;13,8,14,9;14,10,15,9
-      </code>
-      The PD notation is not unique, so there are many different ways to write the same knot.
-      So the above notation is only one of many possible PD notations for the knot 8_8.
-    </p>
-    
-    <p>
-      The site returns a visualization of the lattice as well as further data about the knot, such as:
-    </p>
-    <ul>
-      <li>Number of Kauffman states</li>
-      <li>F-Polynomial</li>
-      <li>Alexander Polynomial</li>
-      <li>Marker positions for the minimal and maximal state</li>
-      <li>Sequence of transpositions from min to max state</li>
-    </ul>
-    <p>
-      Images of the lattice are generated for  knots with up to 12 crossings; polynomial and 
-      lattice data is generated for knots up to 20 crossings.
-    </p>
-    <p>
-      The source code for the lattice generation is available on 
-      <a href="https://github.com/TimoH447/kstates" target="_blank">
-      GitHub</a>.
-    </p>
-    <h3> What are K.States?</h3>
-    K.States is short for Kauffman States which is a concept 
-    from knot theory introduced by Louis Kauffman in the 1980s.
-    Given a knot diagram, we assign a marker - a dot in one of the four regions
-    around each crossing - to each of the crossings in the diagram.
-    We call this assignment a Kauffman state if no two markers are in the 
-    same region in the diagram.
-    In the following image you can see an example of a Kauffman state.
-    <img src="img/state5_2.jpg" alt="Example of a Kauffman state for the knot 5_2" 
-    width="400" height="500"/>
+<body class="text-white d-flex justify-content-center align-items-center">
 
-    If we have a Kauffman state, we can create a new state by an 
-    operation called state transposition.
-    For this operation we look for a segment between two crossings which has 
-    markers on both ends in the regions above and below the segment.
-    In this case we can swap the markers on the two crossing and create a new state.
-    <img src="img/state_transposition.jpg" alt="State transposition"/>
+  <div class="container m-3 text-white bg-glass rounded-4">
+
+      <div><h1 class="display-1 fw-bold text-center">About K.States</h1></div>
+      <p>
+        <strong>K.States</strong> is a web application for visualizing state lattices of knots.
+        You can input a knot diagram in <em>PD notation</em> and select a fixed segment to generate the
+        associated Kauffman state lattice.
+      </p>
+      <p>
+        For the explanation of the PD notation, please refer to 
+        <a href="https://knotinfo.math.indiana.edu/descriptions/pd_notation.html" target="_blank">
+        KnotInfo's PD notation description</a>. 
+        We slightly change the syntax instead of brackets or letters between crossings, 
+        we seperate the segments of a crossing with a comma and the crossings with a 
+        semicolon.
+        <br/>
+        For example the PD notation for the knot 8_8 from the Rolfsen table is:
+
+         <p><em> 1,7,2,6; 2,5,3,6; 5,12,4,11; 4,10,3,11; 1,8,16,7; 16,13,15,12; 13,8,14,9; 14,10,15,9 </em></p>
+
+        The PD notation is not unique, so there are many different ways to write the same knot.
+        So the above notation is only one of many possible PD notations for the knot 8_8.
+      </p>
+      
+      <p>
+        The site returns a visualization of the lattice as well as further data about the knot, such as:
+      </p>
+      <ul>
+        <li>Number of Kauffman states</li>
+        <li>F-Polynomial</li>
+        <li>Alexander Polynomial</li>
+        <li>Marker positions for the minimal and maximal state</li>
+        <li>Sequence of transpositions from min to max state</li>
+      </ul>
+      <p>
+        Images of the lattice are generated for  knots with up to 12 crossings; polynomial and 
+        lattice data is generated for knots up to 20 crossings.
+      </p>
+      <p>
+        The source code for the lattice generation is available on 
+        <a href="https://github.com/TimoH447/kstates" target="_blank">
+        GitHub</a>.
+      </p>
+      <h3 class="text-center"> What are K.States?</h3>
+      K.States is short for Kauffman States which is a concept 
+      from knot theory introduced by Louis Kauffman in the 1980s.
+      Given a knot diagram, we assign a marker - a dot in one of the four regions
+      around each crossing - to each of the crossings in the diagram.
+      We call this assignment a Kauffman state if no two markers are in the 
+      same region in the diagram.
+      In the following image you can see an example of a Kauffman state.
+
+      <img src="img/state5_2.jpg" alt="Example of a Kauffman state for the knot 5_2" 
+      width="400" height="500" class="d-block mx-auto mb-3"/>
+
+      If we have a Kauffman state, we can create a new state by an 
+      operation called state transposition.
+      For this operation we look for a segment between two crossings which has 
+      markers on both ends in the regions above and below the segment.
+      In this case we can swap the markers on the two crossing and create a new state.
+      <img src="img/state_transposition.jpg" alt="State transposition"/>
 
 
-    <p>
-      For any questions or suggestions, feel free to reach out via mail at
-      <a href="mailto:kstates810@gmail.com" target="_blank">
-        kstates810@gmail.com</a>.
-    </p>
-    <p>
-      This project was created by Timo Hauser.
-    </p>
-    <button onclick="goHome()">Back to Home</button>
-  </main>
+      <p>
+        For any questions or suggestions, feel free to reach out via mail at
+        <a href="mailto:kstates810@gmail.com" target="_blank">
+          kstates810@gmail.com</a>.
+      </p>
+      <p>
+        This project was created by Timo Hauser.
+      </p>
+      <button style="background-color: rgb(167, 186, 215);" class="btn" onclick="goHome()">Back to Home</button>
 
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js" integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous"></script>
   <script src="script.js"></script>
 </body>
 </html>
