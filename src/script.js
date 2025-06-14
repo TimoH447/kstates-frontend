@@ -1,8 +1,8 @@
 function submitData() {
-  const pd = document.getElementById("pd-input").value;
+  const knot = document.getElementById("pd-input").value;
   const seg = document.getElementById("fixed-segment").value;
 
-  localStorage.setItem("pd_notation", pd);
+  localStorage.setItem("knot_input", knot);
   localStorage.setItem("fixed_segment", seg);
 
   window.location.href = "results.html";
@@ -23,19 +23,33 @@ function parsePDNotation(pd_notation) {
   }
   return parsed_pd_notation;}
 
+function parseInput(knot_input) {
+  var input = knot_input.trim().toLowerCase();
+  if (input[0]=="t" && input[1]=="b"){
+    var notation_type = "tb";
+    var tb_normalform = input.split(":")[1];
+    return [notation_type,tb_normalform];
+  }
+  else {
+    var notation_type = "pd";
+    var pd_notation = parsePDNotation(knot_input);
+    return  [notation_type,pd_notation];
+  }
+}
+
 async function loadResults() {
-  const pd = localStorage.getItem("pd_notation");
+  const knot = localStorage.getItem("knot_input");
   const seg = localStorage.getItem("fixed_segment");
-  document.getElementById("pd-input").value = pd || "";
+  document.getElementById("pd-input").value = knot || "";
   document.getElementById("fixed-segment").value = seg || "";
 
-  if (!pd || !seg) {
+  if (!knot || !seg) {
     document.getElementById("metadata").innerText = "Missing input. Please go back and try again.";
     return;
   }
 
   try {
-    var parsed_pd = parsePDNotation(pd);
+    var parsed_input = parseInput(knot);
   }
   catch (err) {
     document.getElementById("metadata").innerText = "Invalid PD notation format. Please check your input.";
@@ -49,7 +63,8 @@ async function loadResults() {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ 
-      pd_notation: parsed_pd,           // parsed pd notation as a list of lists
+      notation_type: parsed_input[0],
+      knot_input: parsed_input[1],
       fixed_segment: parseInt(seg)  // The number from user input
     })
   });
