@@ -82,9 +82,11 @@ async function loadResults() {
     <p><strong>Number of States:</strong> ${data.number_of_states}</p>
     <p><strong>F-Polynomial:</strong> ${data.f_polynomial}</p>
     <p><strong>Alexander Polynomial:</strong> ${data.alexander_polynomial}</p>
+    <p><strong>Kauffman Bracket:</strong> ${data.kauffman_bracket}</p>
     <p><strong>Minimal State:</strong> ${data.minimal_state}</p>
     <p><strong>Maximal State:</strong> ${data.maximal_state}</p>
     <p><strong>Sequence from Minimal to Maximal State:</strong> ${data.sequence_min_to_max}</p>
+    <p><strong>Quiver in QPA format:</strong> ${data.knot_diagram_quiver}</p>
   `;
 
 
