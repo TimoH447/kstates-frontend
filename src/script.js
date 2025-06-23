@@ -30,6 +30,12 @@ function parseInput(knot_input) {
     var tb_normalform = input.split(":")[1];
     return [notation_type,tb_normalform];
   }
+  else if (input[0]=="r") {
+    var notation_type = "r";
+    var rolfsen_number = input.split(":")[1];
+    return [notation_type,rolfsen_number];
+
+  }
   else {
     var notation_type = "pd";
     var pd_notation = parsePDNotation(knot_input);
